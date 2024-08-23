@@ -1,0 +1,6 @@
+@vigilant_umbrella_HostAddress = http://localhost:5142
+
+GET {{vigilant_umbrella_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
