@@ -43,9 +43,10 @@ public class CountriesController : ControllerBase
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
     [HttpGet()]
-    public async Task<List<Country>> Get([FromQuery] GetRequest request)
+    public async Task<IActionResult> Get([FromQuery] GetRequest request)
     {
-        return await countriesAppServices.Get(request).ConfigureAwait(false);
+        var response = await countriesAppServices.Get(request).ConfigureAwait(false);
+        return Ok(response);
     }
 
     /// <summary>
@@ -55,9 +56,10 @@ public class CountriesController : ControllerBase
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
     [HttpGet("{id}")]
-    public async Task<Country> GetSingle(Guid id)
+    public async Task<IActionResult> GetSingle(Guid id)
     {
-        return await countriesAppServices.GetSingle(id).ConfigureAwait(false);
+        var response = await countriesAppServices.GetSingle(id).ConfigureAwait(false);
+        return Ok(response);
     }
 
     /// <summary>
@@ -66,9 +68,10 @@ public class CountriesController : ControllerBase
     /// <param name="request">The request.</param>
     /// <returns></returns>
     [HttpPost()]
-    public async Task<Result> Post(PostRequest request)
+    public async Task<IActionResult> Post(PostRequest request)
     {
-        return await countriesAppServices.Post(request).ConfigureAwait(false);
+        var response = await countriesAppServices.Post(request).ConfigureAwait(false);
+        return Ok(response);
     }
 
     /// <summary>
@@ -78,9 +81,10 @@ public class CountriesController : ControllerBase
     /// <param name="request">The request.</param>
     /// <returns></returns>
     [HttpPut("{id}")]
-    public async Task<Result> Put(Guid id, PutRequest request)
+    public async Task<IActionResult> Put(Guid id, PutRequest request)
     {
-        return await countriesAppServices.Put(id, request).ConfigureAwait(false);
+        var response = await countriesAppServices.Put(id, request).ConfigureAwait(false);
+        return Ok(response);
     }
 
     /// <summary>
@@ -90,9 +94,10 @@ public class CountriesController : ControllerBase
     /// <param name="request">The request.</param>
     /// <returns></returns>
     [HttpPatch("{id}")]
-    public async Task<Result> Patch(Guid id, PatchRequest request)
+    public async Task<IActionResult> Patch(Guid id, PatchRequest request)
     {
-        return await countriesAppServices.Patch(id, request).ConfigureAwait(false);
+        var response = await countriesAppServices.Patch(id, request).ConfigureAwait(false);
+        return Ok(response);
     }
 
     /// <summary>
@@ -101,8 +106,9 @@ public class CountriesController : ControllerBase
     /// <param name="id">The identifier.</param>
     /// <returns></returns>
     [HttpDelete()]
-    public async Task<Result> Delete(Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
-        return await countriesAppServices.Delete(id).ConfigureAwait(false);
+        var response = await countriesAppServices.Delete(id).ConfigureAwait(false);
+        return Ok(response);
     }
 }

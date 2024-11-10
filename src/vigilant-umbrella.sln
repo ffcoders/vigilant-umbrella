@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-application", "vigilant-umbrella-application\vigilant-umbrella-application.csproj", "{D09B5DDA-B8BF-4191-80AD-5D5EF31FD9A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vigilant-umbrella-test", "vigilant-umbrella-test\vigilant-umbrella-test.csproj", "{CFE551DC-9F19-412E-8702-A6B3DEE1AAC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-test", "vigilant-umbrella-test\vigilant-umbrella-test.csproj", "{CFE551DC-9F19-412E-8702-A6B3DEE1AAC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

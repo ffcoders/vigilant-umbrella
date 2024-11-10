@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using vigilant_umbrella_application.Dtos;
 using vigilant_umbrella_application.Dtos.V1.Countries;
 using vigilant_umbrella_application.Services.V1.Countries.Requests;
+using vigilant_umbrella_domain.Exceptions;
 using vigilant_umbrella_infrastructure.Context;
 
 namespace vigilant_umbrella_application.Services.V1.Countries;
@@ -22,7 +23,9 @@ public class CountriesAppServices : ICountriesAppServices
     /// <inheritdoc />
     public async Task<Country> GetSingle(Guid id)
     {
-        throw new NotImplementedException();
+        var result = await vigilantUmbrellaDbContext.Countries.FirstOrDefaultAsync(x => x.Id == id);
+
+        return mapper.Map<Country>(result);
     }
 
     /// <inheritdoc />
@@ -31,11 +34,6 @@ public class CountriesAppServices : ICountriesAppServices
         var result = await vigilantUmbrellaDbContext.Countries
                                                     .Where(x => string.IsNullOrEmpty(x.Code) || x.Code == request.Code)
                                                     .ToListAsync();
-
-        if (!result.Any())  
-        {
-            result.Add(new vigilant_umbrella_domain.Entities.Countries.Country { Id = Guid.NewGuid(), Code = request.Code });
-        }
 
         return mapper.Map<List<Country>>(result);
     }

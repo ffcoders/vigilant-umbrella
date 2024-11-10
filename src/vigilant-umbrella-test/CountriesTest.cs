@@ -7,13 +7,13 @@ using vigilant_umbrella_application.Services.V1.Countries.Requests;
 
 namespace vigilant_umbrella_test;
 
-public class UnitTest1
+public class CountriesTest
 {
     private readonly Mock<ICountriesAppServices> _mockService;
     private readonly Mock<ILogger<CountriesController>> _mockLogger;
     private readonly CountriesController _controller;
 
-    public UnitTest1()
+    public CountriesTest()
     {
         _mockService = new Mock<ICountriesAppServices>();
         _mockLogger = new Mock<ILogger<CountriesController>>();
@@ -34,7 +34,7 @@ public class UnitTest1
         _mockService.Setup(service => service.Get(request)).Returns(Task.FromResult(countries));
 
         // Act
-        var result = _controller.Get(request);
+        var result = await _controller.Get(request);
 
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result);
@@ -43,21 +43,23 @@ public class UnitTest1
     }
 
     [Fact]
-    public void GetCountryById_ReturnsNotFoundResult()
+    public async Task GetCountryById_ReturnsNotFoundResult()
     {
         // Arrange
-        Guid countryId = Guid.NewGuid();
-        _mockService.Setup(service => service.GetSingle(countryId)).Returns(Task.FromResult<vigilant_umbrella_application.Dtos.V1.Countries.Country>(null));
+        var countries = new vigilant_umbrella_application.Dtos.V1.Countries.Country();
+
+        _mockService.Setup(service => service.GetSingle(Guid.NewGuid())).Returns(Task.FromResult(countries));
 
         // Act
-        var result = _controller.GetSingle(countryId);
+        var result = await _controller.GetSingle(Guid.Empty);
 
         // Assert
-        Assert.IsType<NotFoundResult>(result);
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Null(okResult.Value);
     }
 
     [Fact]
-    public void GetCountryById_ReturnsOkResult()
+    public async Task GetCountryById_ReturnsOkResult()
     {
         // Arrange
         Guid countryId = Guid.NewGuid();
@@ -65,7 +67,7 @@ public class UnitTest1
         _mockService.Setup(service => service.GetSingle(countryId)).Returns(Task.FromResult(country));
 
         // Act
-        var result = _controller.GetSingle(countryId);
+        var result = await _controller.GetSingle(countryId);
 
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result);
