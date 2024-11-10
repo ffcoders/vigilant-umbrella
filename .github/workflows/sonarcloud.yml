@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Cache SonarCloud packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~\sonar\cache
           key: ${{ runner.os }}-sonar
@@ -47,7 +47,11 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"lekonComp_vigilant-umbrella" /o:"lekoncomp" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.cobertura.xml"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"lekonComp_vigilant-umbrella" /o:"lekoncomp" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="TestResults/**/coverage.cobertura.xml"
           dotnet build src\vigilant-umbrella.sln
           dotnet test src\vigilant-umbrella.sln --collect:"XPlat Code Coverage" --results-directory ./TestResults
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+      - name: List TestResults directory
+        shell: powershell
+        run: Get-ChildItem -Recurse ./TestResults
