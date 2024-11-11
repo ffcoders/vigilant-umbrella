@@ -5,11 +5,13 @@ VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-api", "vigilant-umbrella\vigilant-umbrella-api.csproj", "{91D60658-EB49-4511-8114-B47474ECA32F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vigilant-umbrella-domain", "vigilant-umbrella-domain\vigilant-umbrella-domain.csproj", "{2434F022-E7BD-43A6-9ADD-3ECDA9ABA868}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-domain", "vigilant-umbrella-domain\vigilant-umbrella-domain.csproj", "{2434F022-E7BD-43A6-9ADD-3ECDA9ABA868}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vigilant-umbrella-infrastructure", "vigilant-umbrella-infrastructure\vigilant-umbrella-infrastructure.csproj", "{957703AF-F7D7-4229-92E5-F12341FBF4D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-infrastructure", "vigilant-umbrella-infrastructure\vigilant-umbrella-infrastructure.csproj", "{957703AF-F7D7-4229-92E5-F12341FBF4D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vigilant-umbrella-application", "vigilant-umbrella-application\vigilant-umbrella-application.csproj", "{D09B5DDA-B8BF-4191-80AD-5D5EF31FD9A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-application", "vigilant-umbrella-application\vigilant-umbrella-application.csproj", "{D09B5DDA-B8BF-4191-80AD-5D5EF31FD9A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-test", "vigilant-umbrella-test\vigilant-umbrella-test.csproj", "{CFE551DC-9F19-412E-8702-A6B3DEE1AAC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D09B5DDA-B8BF-4191-80AD-5D5EF31FD9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D09B5DDA-B8BF-4191-80AD-5D5EF31FD9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D09B5DDA-B8BF-4191-80AD-5D5EF31FD9A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFE551DC-9F19-412E-8702-A6B3DEE1AAC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE551DC-9F19-412E-8702-A6B3DEE1AAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE551DC-9F19-412E-8702-A6B3DEE1AAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE551DC-9F19-412E-8702-A6B3DEE1AAC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
