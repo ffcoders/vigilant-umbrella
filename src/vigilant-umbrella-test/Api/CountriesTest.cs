@@ -5,7 +5,7 @@ using vigilant_umbrella.Controllers.V1;
 using vigilant_umbrella_application.Services.V1.Countries;
 using vigilant_umbrella_application.Services.V1.Countries.Requests;
 
-namespace vigilant_umbrella_test;
+namespace vigilant_umbrella_test.Api;
 
 public class CountriesTest
 {
@@ -19,8 +19,6 @@ public class CountriesTest
         _mockLogger = new Mock<ILogger<CountriesController>>();
         _controller = new CountriesController(_mockLogger.Object, _mockService.Object);
     }
-
-    // ... other code ...
 
     [Fact]
     public async Task GetAllCountries_ReturnsOkResult()

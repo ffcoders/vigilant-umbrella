@@ -1,0 +1,43 @@
+﻿namespace vigilant_umbrella_infrastructure.Repositories;
+
+/// <summary>
+/// Defines the basic CRUD operations for a repository.
+/// </summary>
+/// <typeparam name="T">The type of the entity.</typeparam>
+public interface IBaseRepository<T>
+{
+    /// <summary>
+    /// Gets all entities.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous operation. The task result contains a collection of entities.</returns>
+    public abstract Task<IEnumerable<T>> Get();
+
+    /// <summary>
+    /// Gets a single entity or the default value if no entity is found.
+    /// </summary>
+    /// <param name="id">The unique identifier of the entity.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the entity or the default value.</returns>
+    public abstract Task<T> GetById(Guid id);
+
+    /// <summary>
+    /// Adds a new entity.
+    /// </summary>
+    /// <param name="entity">The entity to add.</param>
+    /// <returns>The added entity.</returns>
+    public abstract T Add(T entity);
+
+    /// <summary>
+    /// Updates an existing entity.
+    /// </summary>
+    /// <param name="newEntity">The new entity values.</param>
+    /// <param name="oldEntity">The old entity values.</param>
+    /// <returns>The updated entity.</returns>
+    public abstract T Update(T newEntity, T oldEntity);
+
+    /// <summary>
+    /// Deletes an entity.
+    /// </summary>
+    /// <param name="entity">The entity to delete.</param>
+    /// <returns>The deleted entity.</returns>
+    public abstract T Delete(T entity);
+}

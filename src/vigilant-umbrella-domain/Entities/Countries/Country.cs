@@ -1,4 +1,6 @@
-﻿namespace vigilant_umbrella_domain.Entities.Countries;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace vigilant_umbrella_domain.Entities.Countries;
 
 /// <summary>
 /// Defines the table <see cref="Country"/>.
@@ -12,5 +14,5 @@ public class Country : BaseEntity
     /// <value>
     /// The code.
     /// </value>
-    public string Code { get; set; }
+    public required string Code { get; set; }
 }
