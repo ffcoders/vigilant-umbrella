@@ -1,29 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using vigilant_umbrella_domain.Entities.Countries;
+﻿namespace vigilant_umbrella_infrastructure.Context;
 
-namespace vigilant_umbrella_infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
+using vigilant_umbrella_domain.Entities.Countries;
 
 /// <summary>
 /// Defines the <see cref="VigilantUmbrellaDbContext"/>.
 /// </summary>
 /// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
-public class VigilantUmbrellaDbContext : DbContext, IVigilantUmbrellaDbContext
+public class VigilantUmbrellaDbContext(DbContextOptions<VigilantUmbrellaDbContext> options) : DbContext(options), IVigilantUmbrellaDbContext
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="VigilantUmbrellaDbContext"/> class.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    public VigilantUmbrellaDbContext(DbContextOptions<VigilantUmbrellaDbContext> options) : base(options)
-    {
-    }
-
     /// <summary>
     /// Gets or sets the countries.
     /// </summary>
     /// <value>
     /// The countries.
     /// </value>
-    public DbSet<Country> Countries { get; set; }
+    public DbSet<Country> Countries { get; set; } = null!;
 
     /// <summary>
     /// Override this method to configure the database (and other options) to be used for this context.

@@ -12,5 +12,5 @@ public class Country : BaseEntity
     /// <value>
     /// The code.
     /// </value>
-    public string Code { get; set; }
+    public required string Code { get; set; }
 }

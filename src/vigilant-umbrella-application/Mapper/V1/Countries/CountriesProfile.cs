@@ -1,6 +1,6 @@
-﻿using AutoMapper;
+﻿namespace vigilant_umbrella_application.Mapper.V1.Countries;
 
-namespace vigilant_umbrella_application.Mapper.V1.Countries;
+using AutoMapper;
 
 /// <summary>
 /// Defines the <see cref="CountriesProfile"/>.
@@ -13,7 +13,7 @@ public class CountriesProfile : Profile
     /// </summary>
     public CountriesProfile()
     {
-        CreateMap<Dtos.V1.Countries.Country, vigilant_umbrella_domain.Entities.Countries.Country>()
+        this.CreateMap<Dtos.V1.Countries.Country, vigilant_umbrella_domain.Entities.Countries.Country>()
             .ReverseMap();
     }
 }

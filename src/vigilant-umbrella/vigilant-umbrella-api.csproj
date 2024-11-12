@@ -1,24 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>vigilant_umbrella</RootNamespace>
     <UserSecretsId>223c7724-1d68-4fd8-9b0f-242840e1a1da</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\vigilant-umbrella-application\vigilant-umbrella-application.csproj" />
     <ProjectReference Include="..\vigilant-umbrella-domain\vigilant-umbrella-domain.csproj" />
   </ItemGroup>
-
 </Project>
