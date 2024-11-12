@@ -13,7 +13,7 @@ public class BaseRepository<TEntity>(IVigilantUmbrellaDbContext context) where T
     internal IVigilantUmbrellaDbContext context = context;
     internal DbSet<TEntity> dbSet = context.Set<TEntity>();
 
-    public async Task<IEnumerable<TEntity>> Get(
+    public virtual async Task<IEnumerable<TEntity>> Get(
         Expression<Func<TEntity, bool>>? filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         string includeProperties = "")
@@ -41,7 +41,7 @@ public class BaseRepository<TEntity>(IVigilantUmbrellaDbContext context) where T
         }
     }
 
-    public async Task<TEntity> GetByID(object id)
+    public virtual async Task<TEntity> GetById(Guid id)
     {
         var entity = await dbSet.FindAsync(id);
         if (entity == null)
@@ -52,13 +52,13 @@ public class BaseRepository<TEntity>(IVigilantUmbrellaDbContext context) where T
         return entity;
     }
 
-    public async Task<TEntity> Add(TEntity entity)
+    public virtual async Task<TEntity> Add(TEntity entity)
     {
         var entityEntry = await dbSet.AddAsync(entity);
         return entityEntry.Entity;
     }
 
-    public async Task Delete(object id)
+    public virtual async Task<TEntity> Delete(Guid id)
     {
         var entity = await dbSet.FindAsync(id);
         if (entity == null)
@@ -66,16 +66,32 @@ public class BaseRepository<TEntity>(IVigilantUmbrellaDbContext context) where T
             throw new KeyNotFoundException("Entity not found");
         }
 
-        var propertyInfo = typeof(TEntity).GetProperty("IsDeleted");
-        if (propertyInfo != null && propertyInfo.PropertyType == typeof(bool))
+        var isDeletedAtInfo = typeof(TEntity).GetProperty("IsDeleted");
+        if (isDeletedAtInfo != null && isDeletedAtInfo.PropertyType == typeof(bool))
         {
-            propertyInfo.SetValue(entity, true);
+            isDeletedAtInfo.SetValue(entity, true);
         }
+
+        var updatedAtInfo = typeof(TEntity).GetProperty("UpdatedAt");
+        if (updatedAtInfo != null && updatedAtInfo.PropertyType == typeof(bool))
+        {
+            updatedAtInfo.SetValue(entity, DateTime.UtcNow);
+        }
+
+        return entity;
     }
 
-    public void Update(TEntity entityToUpdate)
+    public virtual TEntity Update(TEntity entity)
     {
-        dbSet.Attach(entityToUpdate);
-        context.Entry(entityToUpdate).State = EntityState.Modified;
+        var propertyInfo = typeof(TEntity).GetProperty("UpdatedAt");
+        if (propertyInfo != null && propertyInfo.PropertyType == typeof(bool))
+        {
+            propertyInfo.SetValue(entity, DateTime.UtcNow);
+        }
+
+        dbSet.Attach(entity);
+        context.Entry(entity).State = EntityState.Modified;
+
+        return entity;
     }
 }

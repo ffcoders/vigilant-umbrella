@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿namespace vigilant_umbrella_domain.Entities;
 
-namespace vigilant_umbrella_domain.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 /// <summary>
 /// Defines the <see cref="BaseTipedEntity"/>.

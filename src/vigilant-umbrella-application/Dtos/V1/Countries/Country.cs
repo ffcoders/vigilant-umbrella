@@ -1,7 +1,7 @@
 ﻿namespace vigilant_umbrella_application.Dtos.V1.Countries;
 
 /// <summary>
-/// 
+/// Defines the <see cref="Country" />.
 /// </summary>
 /// <seealso cref="vigilant_umbrella_application.Dtos.BaseDto" />
 public class Country : BaseDto
@@ -12,5 +12,5 @@ public class Country : BaseDto
     /// <value>
     /// The code.
     /// </value>
-    public string Code { get; set; }
+    public required string Code { get; set; }
 }

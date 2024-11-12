@@ -10,46 +10,46 @@ namespace vigilant_umbrella_application.Services.V1.Countries;
 public interface ICountriesAppServices
 {
     /// <summary>
-    /// Gets the single.
+    /// Gets a single country by its identifier.
     /// </summary>
-    /// <param name="id">The identifier.</param>
-    /// <returns></returns>
+    /// <param name="id">The identifier of the country.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the country.</returns>
     Task<Country> GetSingle(Guid id);
 
     /// <summary>
-    /// Gets the specified request.
+    /// Gets a list of countries based on the specified request.
     /// </summary>
-    /// <param name="request">The request.</param>
-    /// <returns></returns>
+    /// <param name="request">The request containing the criteria for retrieving countries.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains a list of countries.</returns>
     Task<List<Country>> Get(GetRequest request);
 
     /// <summary>
-    /// Posts the specified request.
+    /// Creates a new country based on the specified request.
     /// </summary>
-    /// <param name="request">The request.</param>
-    /// <returns></returns>
+    /// <param name="request">The request containing the details of the country to create.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
     Task<Result> Post(PostRequest request);
 
     /// <summary>
-    /// Puts the specified identifier.
+    /// Updates an existing country with the specified identifier based on the provided request.
     /// </summary>
-    /// <param name="id">The identifier.</param>
-    /// <param name="request">The request.</param>
-    /// <returns></returns>
+    /// <param name="id">The identifier of the country to update.</param>
+    /// <param name="request">The request containing the updated details of the country.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
     Task<Result> Put(Guid id, PutRequest request);
 
     /// <summary>
-    /// Patches the specified request.
+    /// Partially updates an existing country with the specified identifier based on the provided request.
     /// </summary>
-    /// <param name="id">The identifier.</param>
-    /// <param name="request">The request.</param>
-    /// <returns></returns>
+    /// <param name="id">The identifier of the country to update.</param>
+    /// <param name="request">The request containing the partial updates for the country.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
     Task<Result> Patch(Guid id, PatchRequest request);
 
     /// <summary>
-    /// Deletes the specified identifier.
+    /// Deletes a country with the specified identifier.
     /// </summary>
-    /// <param name="id">The identifier.</param>
-    /// <returns></returns>
+    /// <param name="id">The identifier of the country to delete.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
     Task<Result> Delete(Guid id);
 }

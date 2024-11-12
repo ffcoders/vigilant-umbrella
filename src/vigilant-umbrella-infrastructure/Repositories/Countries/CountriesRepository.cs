@@ -1,33 +1,33 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace vigilant_umbrella_infrastructure.Repositories.Countries;
+
 using System.Linq.Expressions;
 using vigilant_umbrella_domain.Entities.Countries;
 using vigilant_umbrella_infrastructure.Context;
 
-namespace vigilant_umbrella_infrastructure.Repositories.Countries;
-
-public class CountriesRepository : BaseRepository<Country>
+public class CountriesRepository(IVigilantUmbrellaDbContext context) : BaseRepository<Country>(context)
 {
-    public CountriesRepository(VigilantUmbrellaDbContext context)
-        : base(context)
+    /// <inheritdoc/>
+    public override async Task<IEnumerable<Country>> Get(Expression<Func<Country, bool>>? filter = null,
+        Func<IQueryable<Country>, IOrderedQueryable<Country>>? orderBy = null,
+        string includeProperties = "")
     {
+        return await base.Get(filter: filter, orderBy: orderBy, includeProperties: includeProperties);
     }
 
-    public async Task<IEnumerable<Country>> Get(Expression<Func<Country, bool>> filter)
+    /// <inheritdoc/>
+    public override async Task<Country> GetById(Guid id)
     {
-        return await base.Get(filter: filter); // TODO: Implementar forma do order by. Desse jeito funciona mas está muito repassar o valores
-    }
-
-    public async Task<Country> GetById(Guid id)
-    {
-        var entity = await base.GetByID(id);
+        var entity = await base.GetById(id);
         if (entity == null)
         {
             throw new KeyNotFoundException("Country not found");
         }
+
         return entity;
     }
 
-    public async Task<Country> Add(Country entity)
+    /// <inheritdoc/>
+    public override async Task<Country> Add(Country entity)
     {
         entity.CreatedAt = DateTime.UtcNow;
         entity.UpdatedAt = DateTime.UtcNow;
@@ -37,17 +37,18 @@ public class CountriesRepository : BaseRepository<Country>
         return entity;
     }
 
-    public Country Update(Country entity)
+    /// <inheritdoc/>
+    public override Country Update(Country entity)
     {
-        entity.UpdatedAt = DateTime.UtcNow;
-
         base.Update(entity);
 
         return entity;
     }
 
-    public async Task Delete(Guid id)
+    /// <inheritdoc/>
+    public override async Task<Country> Delete(Guid id)
     {
-        await base.Delete(id);
+        var entity = await base.Delete(id);
+        return entity;
     }
 }

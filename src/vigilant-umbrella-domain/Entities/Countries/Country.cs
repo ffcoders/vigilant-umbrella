@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace vigilant_umbrella_domain.Entities.Countries;
+﻿namespace vigilant_umbrella_domain.Entities.Countries;
 
 /// <summary>
 /// Defines the table <see cref="Country"/>.

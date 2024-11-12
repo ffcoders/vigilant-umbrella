@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿namespace vigilant_umbrella_infrastructure.Context;
 
-namespace vigilant_umbrella_infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 /// <summary>
 /// Defines the <see cref="VigilantUmbrellaDbContext" />.
