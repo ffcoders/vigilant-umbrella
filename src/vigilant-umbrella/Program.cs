@@ -17,9 +17,15 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDbContext<VigilantUmbrellaDbContext>(options =>
 {
-    options.UseInMemoryDatabase(databaseName: "testDatabase");
-    // Todo: Create a database instance to use
-    //options.UseSqlite(builder.Configuration.GetConnectionString("MainConnectionString"))
+    var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+    if (!string.IsNullOrEmpty(connection))
+    {
+        options.UseSqlServer(connection);
+    }
+    else
+    {
+        options.UseInMemoryDatabase(databaseName: "testDatabase");
+    }
 });
 
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
