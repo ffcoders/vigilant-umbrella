@@ -396,5 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/src/vigilant-umbrella/Properties/launchSettings.json
-/src/vigilant-umbrella/appsettings.Local.json
+/**/Properties/launchSettings.json
+/**/appsettings.Local.json

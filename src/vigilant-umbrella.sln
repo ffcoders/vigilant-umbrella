@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-api", "vigilant-umbrella\vigilant-umbrella-api.csproj", "{91D60658-EB49-4511-8114-B47474ECA32F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-api", "vigilant-umbrella-api\vigilant-umbrella-api.csproj", "{91D60658-EB49-4511-8114-B47474ECA32F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vigilant-umbrella-domain", "vigilant-umbrella-domain\vigilant-umbrella-domain.csproj", "{2434F022-E7BD-43A6-9ADD-3ECDA9ABA868}"
 EndProject
