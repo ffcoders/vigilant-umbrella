@@ -1,19 +1,11 @@
 ﻿namespace vigilant_umbrella_domain.Entities.Countries;
 
 /// <summary>
-/// Defines the table <see cref="Country"/>.
+/// Defines the table <see cref="City"/>.
 /// </summary>
 /// <seealso cref="vigilant_umbrella_domain.Entities.BaseEntity" />
-public class Country : BaseEntity
+public class City : BaseEntity
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Country"/> class.
-    /// </summary>
-    public Country()
-    {
-        this.Cities = [];
-    }
-
     /// <summary>
     /// Gets or sets the code.
     /// </summary>
@@ -23,7 +15,7 @@ public class Country : BaseEntity
     public required string Code { get; set; }
 
     /// <summary>
-    /// Gets or sets the cities.
+    /// Gets or sets the name.
     /// </summary>
-    public IEnumerable<City> Cities { get; set; }
+    public virtual Country Country { get; set; } = null!;
 }

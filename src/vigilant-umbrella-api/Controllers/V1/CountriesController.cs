@@ -16,17 +16,12 @@ using vigilant_umbrella_application.Services.V1.Countries.Requests;
 /// <param name="countriesAppServices">The countries application services.</param>
 [ApiController]
 [Route("[controller]")]
-public class CountriesController(ILogger<CountriesController> logger, ICountriesAppServices countriesAppServices) : ControllerBase
+public class CountriesController(ICountriesAppServices countriesAppServices) : ControllerBase
 {
     /// <summary>
     /// The countries application services
     /// </summary>
     private readonly ICountriesAppServices countriesAppServices = countriesAppServices;
-
-    /// <summary>
-    /// The logger
-    /// </summary>
-    private readonly ILogger<CountriesController> logger = logger;
 
     /// <summary>
     /// Gets a list of countries based on the specified request.

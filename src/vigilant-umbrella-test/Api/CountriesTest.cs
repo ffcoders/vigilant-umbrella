@@ -11,14 +11,12 @@ namespace vigilant_umbrella_test.Api;
 public class CountriesTest
 {
     private readonly Mock<ICountriesAppServices> _mockService;
-    private readonly Mock<ILogger<CountriesController>> _mockLogger;
     private readonly CountriesController _controller;
 
     public CountriesTest()
     {
         _mockService = new Mock<ICountriesAppServices>();
-        _mockLogger = new Mock<ILogger<CountriesController>>();
-        _controller = new CountriesController(_mockLogger.Object, _mockService.Object);
+        _controller = new CountriesController(_mockService.Object);
     }
 
     [Fact]
