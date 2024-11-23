@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vigilant_umbrella_infrastructure.Context;
 
@@ -11,9 +12,11 @@ using vigilant_umbrella_infrastructure.Context;
 namespace vigilant_umbrella_infrastructure.Migrations
 {
     [DbContext(typeof(VigilantUmbrellaDbContext))]
-    partial class VigilantUmbrellaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241123170655_Cities")]
+    partial class Cities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
