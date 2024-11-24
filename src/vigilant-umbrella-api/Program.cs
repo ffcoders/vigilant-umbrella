@@ -1,6 +1,7 @@
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using vigilant_umbrella_application.Services.V1.Cities;
 using vigilant_umbrella_application.Services.V1.Countries;
 using vigilant_umbrella_infrastructure.Context;
 using vigilant_umbrella_infrastructure.UnitOfWork;
@@ -37,9 +38,12 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+services.AddRouting(options => options.LowercaseUrls = true);
+
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+
 services.AddDbContext<VigilantUmbrellaDbContext>(options =>
 {
-    var connection = builder.Configuration.GetConnectionString("DefaultConnection");
     if (!string.IsNullOrEmpty(connection))
     {
         options.UseSqlServer(connection);
@@ -54,14 +58,16 @@ services.AddTransient<IUnitOfWork, UnitOfWork>();
 services.AddScoped<IVigilantUmbrellaDbContext, VigilantUmbrellaDbContext>();
 
 builder.Services.AddScoped<ICountriesAppServices, CountriesAppServices>();
+builder.Services.AddScoped<ICitiesAppServices, CitiesAppServices>();
 
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 
 // Apply migrations at startup
-using (var scope = app.Services.CreateScope())
+if (!string.IsNullOrEmpty(connection))
 {
+    using var scope = app.Services.CreateScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<VigilantUmbrellaDbContext>();
     await dbContext.Database.MigrateAsync();
 }

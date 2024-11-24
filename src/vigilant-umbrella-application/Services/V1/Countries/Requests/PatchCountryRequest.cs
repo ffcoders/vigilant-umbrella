@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a request to patch a country's information.
 /// </summary>
-public class PatchRequest
+public class PatchCountryRequest
 {
     /// <summary>
     /// Gets or sets the fields to update in the patch request.

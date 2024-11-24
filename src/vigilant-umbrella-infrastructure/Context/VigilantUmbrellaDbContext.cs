@@ -1,6 +1,7 @@
 ﻿namespace vigilant_umbrella_infrastructure.Context;
 
 using Microsoft.EntityFrameworkCore;
+using vigilant_umbrella_domain.Entities.Cities;
 using vigilant_umbrella_domain.Entities.Countries;
 
 /// <summary>

@@ -1,5 +1,7 @@
 ﻿namespace vigilant_umbrella_domain.Entities.Countries;
 
+using vigilant_umbrella_domain.Entities.Cities;
+
 /// <summary>
 /// Defines the table <see cref="Country"/>.
 /// </summary>

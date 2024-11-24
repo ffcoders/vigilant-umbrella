@@ -1,5 +1,6 @@
 ﻿namespace vigilant_umbrella_infrastructure.UnitOfWork;
 
+using vigilant_umbrella_domain.Entities.Cities;
 using vigilant_umbrella_domain.Entities.Countries;
 using vigilant_umbrella_infrastructure.Context;
 using vigilant_umbrella_infrastructure.Repositories;
@@ -13,8 +14,24 @@ using vigilant_umbrella_infrastructure.Repositories;
 /// <param name="context">The database context.</param>
 public class UnitOfWork(IVigilantUmbrellaDbContext context) : IUnitOfWork, IAsyncDisposable, IDisposable
 {
+    /// <summary>
+    /// The database context.
+    /// </summary>
     private readonly IVigilantUmbrellaDbContext _context = context;
+
+    /// <summary>
+    /// The repository for managing <see cref="Country"/> entities.
+    /// </summary>
     private BaseRepository<Country>? _countries;
+
+    /// <summary>
+    /// The repository for managing <see cref="City"/> entities.
+    /// </summary>
+    private BaseRepository<City>? _cities;
+
+    /// <summary>
+    /// A boolean value indicating whether the object has been disposed.
+    /// </summary>
     private bool _disposed = false;
 
     /// <summary>
@@ -25,6 +42,17 @@ public class UnitOfWork(IVigilantUmbrellaDbContext context) : IUnitOfWork, IAsyn
         get
         {
             return _countries ??= new BaseRepository<Country>(_context);
+        }
+    }
+
+    /// <summary>
+    /// Gets the repository for managing <see cref="City"/> entities.
+    /// </summary>
+    public BaseRepository<City> Cities
+    {
+        get
+        {
+            return _cities ??= new BaseRepository<City>(_context);
         }
     }
 

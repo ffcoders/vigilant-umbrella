@@ -25,9 +25,9 @@ public class CountriesTest
         // Arrange
         var countries = new List<vigilant_umbrella_application.Dtos.V1.Countries.Country>
         {
-            new vigilant_umbrella_application.Dtos.V1.Countries.Country { Id = Guid.NewGuid(), Code = "CD" }
+            new() { Id = Guid.NewGuid(), Code = "CD" }
         };
-        var request = new GetRequest(); // Create a GetRequest object
+        var request = new GetCountriesRequest(); // Create a GetRequest object
         _mockService.Setup(service => service.Get(request)).ReturnsAsync(countries);
 
         // Act
@@ -43,7 +43,7 @@ public class CountriesTest
     public async Task GetCountryById_ReturnsNotFoundResult()
     {
         // Arrange
-        var country = (vigilant_umbrella_application.Dtos.V1.Countries.Country)null;
+        vigilant_umbrella_application.Dtos.V1.Countries.Country? country = null;
         _mockService.Setup(service => service.GetSingle(It.IsAny<Guid>())).ReturnsAsync(country);
 
         // Act

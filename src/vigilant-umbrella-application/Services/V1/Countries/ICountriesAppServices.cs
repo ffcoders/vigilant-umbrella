@@ -21,14 +21,14 @@ public interface ICountriesAppServices
     /// </summary>
     /// <param name="request">The request containing the criteria for retrieving countries.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains a list of countries.</returns>
-    Task<List<Country>> Get(GetRequest request);
+    Task<List<Country>> Get(GetCountriesRequest request);
 
     /// <summary>
     /// Creates a new country based on the specified request.
     /// </summary>
     /// <param name="request">The request containing the details of the country to create.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
-    Task<Result> Post(PostRequest request);
+    Task<Result> Post(PostCountryRequest request);
 
     /// <summary>
     /// Updates an existing country with the specified identifier based on the provided request.
@@ -36,7 +36,7 @@ public interface ICountriesAppServices
     /// <param name="id">The identifier of the country to update.</param>
     /// <param name="request">The request containing the updated details of the country.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
-    Task<Result> Put(Guid id, PutRequest request);
+    Task<Result> Put(Guid id, PutCountryRequest request);
 
     /// <summary>
     /// Partially updates an existing country with the specified identifier based on the provided request.
@@ -44,7 +44,7 @@ public interface ICountriesAppServices
     /// <param name="id">The identifier of the country to update.</param>
     /// <param name="request">The request containing the partial updates for the country.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
-    Task<Result> Patch(Guid id, PatchRequest request);
+    Task<Result> Patch(Guid id, PatchCountryRequest request);
 
     /// <summary>
     /// Deletes a country with the specified identifier.

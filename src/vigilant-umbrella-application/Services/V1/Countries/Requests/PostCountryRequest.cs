@@ -1,12 +1,12 @@
 ﻿namespace vigilant_umbrella_application.Services.V1.Countries.Requests;
 
 /// <summary>
-/// Represents a request to update a country with a specific code.
+/// Represents a request to create a new country entry.
 /// </summary>
-public class PutRequest
+public class PostCountryRequest
 {
     /// <summary>
-    /// Gets or sets the code of the country to be updated.
+    /// Gets or sets the code of the country.
     /// </summary>
     public required string Code { get; set; }
 }
