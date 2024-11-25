@@ -31,7 +31,7 @@ public class CountriesAppServicesTest
         {
             new Country { Id = Guid.NewGuid(), Code = "US" }
         };
-        var request = new GetRequest();
+        var request = new GetCountriesRequest();
         _mockUow.Setup(uow => uow.Countries.Get(It.IsAny<Expression<Func<Country, bool>>>(), It.IsAny<Func<IQueryable<Country>, IOrderedQueryable<Country>>>(), It.IsAny<string>()))
                 .ReturnsAsync(countries);
         _mockMapper.Setup(mapper => mapper.Map<List<vigilant_umbrella_application.Dtos.V1.Countries.Country>>(countries))

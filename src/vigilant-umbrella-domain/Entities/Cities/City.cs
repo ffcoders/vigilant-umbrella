@@ -1,9 +1,11 @@
-﻿namespace vigilant_umbrella_domain.Entities.Countries;
+﻿using vigilant_umbrella_domain.Entities.Countries;
+
+namespace vigilant_umbrella_domain.Entities.Cities;
 
 /// <summary>
 /// Defines the table <see cref="City"/>.
 /// </summary>
-/// <seealso cref="vigilant_umbrella_domain.Entities.BaseEntity" />
+/// <seealso cref="BaseEntity" />
 public class City : BaseEntity
 {
     /// <summary>
@@ -13,6 +15,8 @@ public class City : BaseEntity
     /// The code.
     /// </value>
     public required string Code { get; set; }
+
+    public required string Name { get; set; }
 
     /// <summary>
     /// Gets or sets the name.

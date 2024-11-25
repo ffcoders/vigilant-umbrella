@@ -29,7 +29,7 @@ public class CountriesController(ICountriesAppServices countriesAppServices) : C
     /// <param name="request">The request containing the criteria for retrieving countries.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains a list of countries.</returns>
     [HttpGet()]
-    public async Task<IActionResult> Get([FromQuery] GetRequest request)
+    public async Task<IActionResult> Get([FromQuery] GetCountriesRequest request)
     {
         var response = await countriesAppServices.Get(request).ConfigureAwait(false);
         return Ok(response);
@@ -53,7 +53,7 @@ public class CountriesController(ICountriesAppServices countriesAppServices) : C
     /// <param name="request">The request containing the details of the country to create.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
     [HttpPost()]
-    public async Task<IActionResult> Post(PostRequest request)
+    public async Task<IActionResult> Post(PostCountryRequest request)
     {
         var response = await countriesAppServices.Post(request).ConfigureAwait(false);
         return Ok(response);
@@ -66,7 +66,7 @@ public class CountriesController(ICountriesAppServices countriesAppServices) : C
     /// <param name="request">The request containing the updated details of the country.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, PutRequest request)
+    public async Task<IActionResult> Put(Guid id, PutCountryRequest request)
     {
         var response = await countriesAppServices.Put(id, request).ConfigureAwait(false);
         return Ok(response);
@@ -79,7 +79,7 @@ public class CountriesController(ICountriesAppServices countriesAppServices) : C
     /// <param name="request">The request containing the partial updates for the country.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
     [HttpPatch("{id}")]
-    public async Task<IActionResult> Patch(Guid id, PatchRequest request)
+    public async Task<IActionResult> Patch(Guid id, PatchCountryRequest request)
     {
         var response = await countriesAppServices.Patch(id, request).ConfigureAwait(false);
         return Ok(response);

@@ -1,5 +1,6 @@
 ﻿namespace vigilant_umbrella_infrastructure.UnitOfWork;
 
+using vigilant_umbrella_domain.Entities.Cities;
 using vigilant_umbrella_domain.Entities.Countries;
 using vigilant_umbrella_infrastructure.Repositories;
 
@@ -12,6 +13,11 @@ public interface IUnitOfWork
     /// Gets the repository for managing <see cref="Country"/> entities.
     /// </summary>
     BaseRepository<Country> Countries { get; }
+
+    /// <summary>
+    /// Gets the repository for managing <see cref="City"/> entities.
+    /// </summary>
+    BaseRepository<City> Cities { get; }
 
     /// <summary>
     /// Asynchronously saves all changes made in this unit of work.

@@ -4,14 +4,14 @@ using FluentValidation;
 using vigilant_umbrella_application.Services.V1.Countries.Requests;
 
 /// <summary>
-/// Validator for <see cref="PatchRequest"/> to ensure that the request data is valid.
+/// Validator for <see cref="PatchCountryRequest"/> to ensure that the request data is valid.
 /// </summary>
-public class PatchRequestValidator : AbstractValidator<PatchRequest>
+public class PatchCountryRequestValidator : AbstractValidator<PatchCountryRequest>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="PatchRequestValidator"/> class.
+    /// Initializes a new instance of the <see cref="PatchCountryRequestValidator"/> class.
     /// </summary>
-    public PatchRequestValidator()
+    public PatchCountryRequestValidator()
     {
         this.RuleFor(x => x.FieldsToUpdate)
             .NotEmpty().WithMessage("FieldsToUpdate is required.");
