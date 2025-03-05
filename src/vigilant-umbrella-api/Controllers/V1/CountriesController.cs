@@ -12,7 +12,6 @@ using vigilant_umbrella_application.Services.V1.Countries.Requests;
 /// <remarks>
 /// Initializes a new instance of the <see cref="CountriesController" /> class.
 /// </remarks>
-/// <param name="logger">The logger.</param>
 /// <param name="countriesAppServices">The countries application services.</param>
 [ApiController]
 [Route("[controller]")]

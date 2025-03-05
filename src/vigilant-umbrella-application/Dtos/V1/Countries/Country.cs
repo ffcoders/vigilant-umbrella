@@ -13,4 +13,12 @@ public class Country : BaseDto
     /// The code.
     /// </value>
     public required string Code { get; set; }
+
+    /// <summary>
+    /// Gets or sets the cities.
+    /// </summary>
+    /// <value>
+    /// The cities.
+    /// </value>
+    public IEnumerable<vigilant_umbrella_domain.Entities.Cities.City> Cities { get; set; }
 }
