@@ -12,7 +12,6 @@ using vigilant_umbrella_application.Services.V1.Cities.Requests;
 /// <remarks>
 /// Initializes a new instance of the <see cref="CitiesController" /> class.
 /// </remarks>
-/// <param name="logger">The logger.</param>
 /// <param name="citiesAppServices">The cities application services.</param>
 [ApiController]
 [Route("[controller]")]
