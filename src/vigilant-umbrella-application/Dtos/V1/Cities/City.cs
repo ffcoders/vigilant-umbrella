@@ -13,4 +13,12 @@ public class City : BaseDto
     /// The code.
     /// </value>
     public required string Code { get; set; }
+
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
+    /// <value>
+    /// The name.
+    /// </value>
+    public required string Name { get; set; }
 }
