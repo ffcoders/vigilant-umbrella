@@ -38,6 +38,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Setup .NET for testing
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore src
+
+      # Build
+      - name: Build
+        run: dotnet build src --no-restore
+
+      # Run tests with coverage
+      - name: Test with coverage
+        run: dotnet test src --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+
+      # Install dotnet-coverage
+      - name: Install dotnet-coverage
+        run: dotnet tool install --global dotnet-coverage
+
+      # Generate coverage report in Cobertura format for Codacy
+      - name: Generate Cobertura coverage report
+        run: dotnet-coverage merge -f cobertura -o coverage.cobertura.xml coverage/**/*.xml
+
+      # Upload coverage to Codacy
+      - name: Upload coverage to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage.cobertura.xml
+
       # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
