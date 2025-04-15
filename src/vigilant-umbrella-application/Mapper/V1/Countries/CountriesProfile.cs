@@ -14,6 +14,8 @@ public class CountriesProfile : Profile
     public CountriesProfile()
     {
         this.CreateMap<Dtos.V1.Countries.Country, vigilant_umbrella_domain.Entities.Countries.Country>()
-            .ReverseMap();
+            .ReverseMap()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Population, opt => opt.MapFrom(src => src.Population));
     }
 }
