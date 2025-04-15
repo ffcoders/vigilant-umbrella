@@ -47,4 +47,74 @@ public class CountriesAppServicesTest
         Assert.Single(result);
         Assert.Equal("US", result.First().Code);
     }
+
+    [Fact(Skip = "Still need to adjust repositories to support mock")]
+    public async Task GetSingle_ShouldReturnCountry()
+    {
+        // Arrange
+        var countryId = Guid.NewGuid();
+        var country = new Country { Id = countryId, Code = "US" };
+        _mockUow.Setup(uow => uow.Countries.GetById(countryId)).ReturnsAsync(country);
+        _mockMapper.Setup(mapper => mapper.Map<vigilant_umbrella_application.Dtos.V1.Countries.Country>(country))
+                   .Returns(new vigilant_umbrella_application.Dtos.V1.Countries.Country { Id = countryId, Code = "US" });
+
+        // Act
+        var result = await _service.GetSingle(countryId);
+
+        // Assert
+        Assert.Equal("US", result.Code);
+    }
+
+    [Fact(Skip = "Still need to adjust repositories to support mock")]
+    public async Task Post_ShouldCreateCountry()
+    {
+        // Arrange
+        var request = new PostCountryRequest { Code = "US" };
+        var country = new Country { Id = Guid.NewGuid(), Code = "US" };
+        _mockMapper.Setup(mapper => mapper.Map<vigilant_umbrella_domain.Entities.Countries.Country>(It.IsAny<vigilant_umbrella_application.Dtos.V1.Countries.Country>()))
+                   .Returns(country);
+        _mockUow.Setup(uow => uow.Countries.Add(country)).ReturnsAsync(country);
+        _mockUow.Setup(uow => uow.CompleteAsync()).ReturnsAsync(1);
+
+        // Act
+        var result = await _service.Post(request);
+
+        // Assert
+        Assert.True(result.Success);
+    }
+
+    [Fact(Skip = "Still need to adjust repositories to support mock")]
+    public async Task Put_ShouldUpdateCountry()
+    {
+        // Arrange
+        var countryId = Guid.NewGuid();
+        var request = new PutCountryRequest { Code = "US" };
+        var country = new Country { Id = countryId, Code = "US" };
+        _mockUow.Setup(uow => uow.Countries.GetById(countryId)).ReturnsAsync(country);
+        _mockUow.Setup(uow => uow.Countries.Update(country)).Returns(country);
+        _mockUow.Setup(uow => uow.CompleteAsync()).ReturnsAsync(1);
+
+        // Act
+        var result = await _service.Put(countryId, request);
+
+        // Assert
+        Assert.True(result.Success);
+    }
+
+    [Fact(Skip = "Still need to adjust repositories to support mock")]
+    public async Task Delete_ShouldRemoveCountry()
+    {
+        // Arrange
+        var countryId = Guid.NewGuid();
+        var country = new Country { Id = countryId, Code = "US" };
+        _mockUow.Setup(uow => uow.Countries.GetById(countryId)).ReturnsAsync(country);
+        _mockUow.Setup(uow => uow.Countries.Delete(countryId)).ReturnsAsync(true);
+        _mockUow.Setup(uow => uow.CompleteAsync()).ReturnsAsync(1);
+
+        // Act
+        var result = await _service.Delete(countryId);
+
+        // Assert
+        Assert.True(result.Success);
+    }
 }

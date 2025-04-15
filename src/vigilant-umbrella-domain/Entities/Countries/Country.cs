@@ -25,6 +25,22 @@ public class Country : BaseEntity
     public required string Code { get; set; }
 
     /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
+    /// <value>
+    /// The name.
+    /// </value>
+    public required string Name { get; set; }
+
+    /// <summary>
+    /// Gets or sets the population.
+    /// </summary>
+    /// <value>
+    /// The population.
+    /// </value>
+    public required int Population { get; set; }
+
+    /// <summary>
     /// Gets or sets the cities.
     /// </summary>
     public IEnumerable<City> Cities { get; set; }

@@ -70,4 +70,56 @@ public class CountriesTest
         var returnValue = Assert.IsType<vigilant_umbrella_application.Dtos.V1.Countries.Country>(okResult.Value);
         Assert.Equal(countryId, returnValue.Id);
     }
+
+    [Fact]
+    public async Task CreateCountry_ReturnsOkResult()
+    {
+        // Arrange
+        var request = new PostCountryRequest { Code = "CD" };
+        var result = new vigilant_umbrella_application.Dtos.Result { Success = true };
+        _mockService.Setup(service => service.Post(request)).ReturnsAsync(result);
+
+        // Act
+        var response = await _controller.Post(request);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(response);
+        var returnValue = Assert.IsType<vigilant_umbrella_application.Dtos.Result>(okResult.Value);
+        Assert.True(returnValue.Success);
+    }
+
+    [Fact]
+    public async Task UpdateCountry_ReturnsOkResult()
+    {
+        // Arrange
+        Guid countryId = Guid.NewGuid();
+        var request = new PutCountryRequest { Code = "CD" };
+        var result = new vigilant_umbrella_application.Dtos.Result { Success = true };
+        _mockService.Setup(service => service.Put(countryId, request)).ReturnsAsync(result);
+
+        // Act
+        var response = await _controller.Put(countryId, request);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(response);
+        var returnValue = Assert.IsType<vigilant_umbrella_application.Dtos.Result>(okResult.Value);
+        Assert.True(returnValue.Success);
+    }
+
+    [Fact]
+    public async Task DeleteCountry_ReturnsOkResult()
+    {
+        // Arrange
+        Guid countryId = Guid.NewGuid();
+        var result = new vigilant_umbrella_application.Dtos.Result { Success = true };
+        _mockService.Setup(service => service.Delete(countryId)).ReturnsAsync(result);
+
+        // Act
+        var response = await _controller.Delete(countryId);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(response);
+        var returnValue = Assert.IsType<vigilant_umbrella_application.Dtos.Result>(okResult.Value);
+        Assert.True(returnValue.Success);
+    }
 }
