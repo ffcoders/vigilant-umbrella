@@ -89,7 +89,7 @@ public class CountriesController(ICountriesAppServices countriesAppServices) : C
     /// </summary>
     /// <param name="id">The identifier of the country to delete.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the result of the operation.</returns>
-    [HttpDelete()]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
         var response = await countriesAppServices.Delete(id).ConfigureAwait(false);

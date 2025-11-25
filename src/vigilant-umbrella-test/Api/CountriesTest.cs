@@ -70,4 +70,21 @@ public class CountriesTest
         var returnValue = Assert.IsType<vigilant_umbrella_application.Dtos.V1.Countries.Country>(okResult.Value);
         Assert.Equal(countryId, returnValue.Id);
     }
+
+    [Fact]
+    public async Task DeleteCountry_ReturnsOkResult()
+    {
+        // Arrange
+        Guid countryId = Guid.NewGuid();
+        var deleteResult = new vigilant_umbrella_application.Dtos.Result { Success = true };
+        _mockService.Setup(service => service.Delete(countryId)).ReturnsAsync(deleteResult);
+
+        // Act
+        var result = await _controller.Delete(countryId);
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var returnValue = Assert.IsType<vigilant_umbrella_application.Dtos.Result>(okResult.Value);
+        Assert.True(returnValue.Success);
+    }
 }
